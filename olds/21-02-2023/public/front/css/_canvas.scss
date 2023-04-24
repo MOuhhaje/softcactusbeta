@@ -1,0 +1,649 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin:0;
+	padding: 0;
+	background: black;
+	color: white;
+}
+.section{
+	max-width: 100vw;
+}
+#global-wrapper{
+	overflow: scroll;
+	height: $wh;
+	width:100vw;
+	position: relative;
+}
+.section.edit{
+	min-height: calc(#{$vh} * 75);
+	position: relative;
+	>.button{
+		position: absolute;
+		top:50%;
+		left:50%;
+		transform: translateX(-50%) translateY(-50%);	
+	}
+}
+.target{
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 100;
+	cursor: pointer;
+	width:100%;
+	height: 100%;
+	span{
+		display: none;
+	}
+}
+
+.live-background{
+	min-height: $vh;
+	width: 110vw;
+	position: relative;
+	>.lb-canvas{
+		width:100%;
+		height:100%;
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform:translateY(-50%) translateX(-50%);
+		object-fit:cover;
+	}
+}
+#global-loader{
+	position: fixed;
+	top:50%;
+	left:50vw;
+	pointer-events: none;
+	z-index: 10000;
+	overflow: hidden;
+	transform:translateY(-50%) translateX(-50%);
+	//padding: 0 calc(#{$pad}*2) $pad 0;
+	transition: opacity 0s $ease 0s, transform .5s $ease .0s;
+	svg{
+		position: relative;
+		height: calc(#{$pad}*2);
+		width: auto;
+		transition: opacity 1s $ease 0s, transform 1s $ease .0s;
+		.loader-block{
+			opacity: 0;
+			&.shown{
+				opacity: 1;
+			}
+		}
+	}
+	svg *{
+		fill:white;
+	}
+	&.blurred{
+		//svg{
+			animation: blurred 2s $ease infinite;
+			svg .loader-block{
+				opacity: 1;
+			}
+		//}
+	}
+	&.stretched{
+			animation: stretched 2s cubic-bezier(0.68, -0.6, 0.32, 1.6) infinite;
+			svg .loader-block{
+				opacity: 1;
+			}
+	}
+}
+@keyframes blurred{
+	0%,100%{
+		filter:blur(0px);
+		transform:translateY(-50%) translateX(-50%) scale(1);
+		//opacity: 1;
+	}
+	50%{
+		filter:blur(20px);
+		//opacity: 0.5;
+		transform:translateY(-50%) translateX(-50%) scale(1.1);
+	}
+}
+@keyframes stretched{
+	0%,50%,100%{
+		transform:translateY(-50%) translateX(-50%) scale(1);
+	}
+	25%{
+		transform:translateY(-50%) translateX(-50%) scaleX(1.5);
+	}
+	75%{
+		transform:translateY(-50%) translateX(-50%) scaleX(1.75);
+	}
+}
+.loaded{
+	#global-loader{
+		opacity: 0;
+	
+	}
+}
+#global-icon{
+	position: absolute;
+	top:$wh;
+	right:0;
+	pointer-events: none;
+	z-index: 10000;
+	opacity: 0;
+	transform:translateY(100%) translateX(0%);
+	padding: 0 calc(#{$pad}*2) $pad 0;
+	transition: opacity 1s $ease 0s, transform .5s $ease .0s;
+	svg{
+		position: relative;
+		transform: scaleY(2);
+		height: $halfPad;
+		transition: opacity 1s $ease 0s, transform 1s $ease .0s;
+	}
+	svg *{
+		fill:white;
+	}
+	a.mobile-toggle{
+		position: absolute;
+		width:calc(100% - #{$halfPad});
+		height: calc(100% - #{$halfPad});
+		top:0;
+		left:0;
+		z-index: 100;
+		span{
+			display: none;
+		}
+	}
+	@include breakpoint(mobile){
+		mix-blend-mode: difference;
+		position: fixed;
+		pointer-events: all;
+	}
+}
+#mobile-nav{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height: 100%;
+	
+	background: black;
+	color: white;
+	z-index: 9000;
+	transform-origin: 100% 50%;
+	transform: translateX(-100%) scaleX(1.2);
+	transition: transform 1s $ease;
+	display: none;
+	>.container{
+		width: 100vw;
+		height: $wh;
+		overflow: scroll;
+	}
+	a{
+		color: white;
+		font-family: $headings;
+		text-transform: uppercase;
+		font-size: 6rem;
+		line-height: 1;
+		text-decoration: none;
+		&:hover{
+			color:transparent;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: white;
+		}
+	}
+	ul{
+		padding:calc(#{$pad}*2.5) $halfPad $pad;
+		li{
+			position: relative;
+			opacity: 0;
+			transform-origin: 100% 50%;
+			transform: translateX(-100%) scaleX(1.25);
+			transition: opacity .25s $ease 1s, transform .5s $ease 1s;		
+		}
+	}
+	@include breakpoint(mobile){
+		display: block;
+	}
+}
+.show-nav{
+	#mobile-nav{
+		transform: translateX(0%) scale(1);
+		ul li{
+			opacity: 1;
+			transform: translateX(0%) scale(1);
+			@for $li from 1 through 30 {
+				&:nth-of-type(#{$li}) {
+					transition-delay:calc(.5s + (#{$li} * .125s));						
+				  }
+			}	
+		}
+	}
+}
+#global-sidebar{
+	width: $halfPad;
+	height: $wh;
+	position: fixed;
+	top:0;
+	right:0;
+	z-index: 10000;
+	pointer-events: none;
+	transform: translateX(100%);
+	background: linear-gradient(46deg, rgba(163,124,112,1) 2%, rgba(229,133,100,1) 37%, rgba(207,87,130,1) 82%);
+	transition: transform .5s $ease .25s;
+}
+#global-header{
+	display: flex;
+	padding: $halfPad  calc(#{$pad}*2);
+	position: absolute;
+	width: 100vw;
+	top:0;
+	left:0;
+	z-index: 1000;
+	justify-content: space-between;
+	align-items: center;
+	overflow: hidden;
+	a.mobile-toggle{
+		position: absolute;
+		width:calc(100%);
+		height: calc(100%);
+		top:0;
+		left:0;
+		z-index: 100;
+		display: none;
+		span{
+			display: none;
+		}
+		@include breakpoint(mobile){
+			display: inline-block;
+		}
+	}
+	>div{
+		position: relative;
+	}
+	#header-logo{
+		display: block;
+		position: relative;
+		transform-origin: 50% 0%;
+		opacity: 0;
+		left:calc(#{$pad}*-2);
+		transform: scaleX(1.25);
+		transition: transform .75s $ease, opacity .5s $ease, left .5s $ease;
+		svg{
+			position: relative;
+			display: block;
+			height: $halfPad;
+			//width:calc(#{$pad}*1.5);
+			aspect-ratio: 4 / 1;
+			*{
+				fill:white;
+			}
+		}
+		span{
+			display: none;
+		}
+	
+		@include breakpoint(mouse){
+			&:hover{
+				transform: scale(1.1) rotateZ(-10deg) skew(-10deg);
+				transition: transform .25s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+			}
+		}
+
+	}
+	#primary{
+		display: flex;
+		font-family: $nav;
+		text-transform: uppercase;
+		left:1rem;
+		position: relative;
+		perspective: 500px;
+		font-size: 90%;
+		li{
+			margin-left: 1rem;
+			opacity: 0;
+			transform: translateY(calc(#{$pad}*-1)) rotateZ(-10deg);
+			transition: opacity 1s $ease, transform .5s $ease;
+			@for $li from 1 through 30 {
+				&:nth-of-type(#{$li}) {
+					transition-delay:calc((#{$li} * .05s));						
+			  }
+			}
+		}
+		a{
+			color: white;
+			text-decoration: none;
+			position: relative;
+			display: inline-block;
+			overflow: hidden;
+			padding: 1rem;
+			
+			&:after{
+				content: attr(data-title);
+				position: absolute;
+				top:50%;
+				left:50%;
+				font-weight: bold;
+				transform-origin: 0% 50%;
+				transform:translateX(100%) translateY(-50%) scaleX(0);
+				opacity: 0;
+				transition: transform .5s $ease,  opacity .5s $ease;
+			}
+			&:before{
+				content: attr(data-title);
+				font-weight: bold;
+				visibility: hidden;
+				
+				display: inline-block;
+			}
+			>span{
+				position: absolute;
+				top:50%;
+				left:50%;
+				transform-origin: 0% 50%;
+				//filter:blur(0px);
+				transform:translateX(-50%) translateY(-50%)  scaleX(1);
+				transition: transform .5s $ease,  opacity .5s $ease;
+			}
+
+		}
+		li.current-menu-item a,
+		a:hover{
+			&:after{
+				opacity: 1;
+				transform:translateX(-50%) translateY(-50%)  scaleX(1);
+			}
+			>span{
+				opacity: 0;
+				transform:translateX(-50%) translateY(-50%)  scaleX(0);
+			}
+		}
+	}
+}
+.loaded{
+	#global-icon{
+		opacity: 1;
+		transform: translateY(-100%) translateX(0%);
+		svg{
+			transform: scaleY(1);
+		}
+	}
+	#global-sidebar{
+		transform: translateX(0%);
+	}
+	#global-header{
+		#primary li{
+			opacity: 1;
+			transform: translateY(0)  rotateZ(0deg);
+		}
+		#header-logo{
+			opacity: 1;
+			left:0;
+			transform: scaleX(1);
+			&:hover{
+				transform: scale(1.1) rotateZ(-10deg) skew(-10deg);
+				transition: transform .25s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+			}
+		}
+	}
+}
+#global-footer{
+	background: black;
+	padding: $pad  calc(#{$pad}*2) 0  0;
+	width: 100vw;
+	z-index: 20000;
+	position: relative;
+	overflow: hidden;
+
+	>.container{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		//flex-wrap: wrap;		
+	}
+	a{
+		color: white;
+	}
+	#footer-social{
+		li{
+			opacity: 0;
+			transform: translateY(calc(#{$pad}*1)) rotateZ(10deg);
+		}
+	}
+	#footer-tagline{
+		padding-left: calc(#{$pad}*2);
+		padding-bottom:$pad;
+		font-size: 90%;
+		opacity: 0;
+		//transform: scaleX(1.2);
+		filter:blur(10px);
+		transition: opacity 1s $ease 0s, transform .5s $ease .0s, filter 1s $ease 0s;
+	}
+	#footer-logo{
+		display: block;
+		position: relative;
+		opacity: 0;
+		top:calc(#{$pad}*2);
+		transform: scaleY(1.25);
+		transition: transform .75s $ease, opacity .5s $ease, top .5s $ease;
+		svg{
+			width:60vw;
+			aspect-ratio: 9 / 3;
+			display: block;
+			*{
+				fill:white;
+			}
+		}
+		span{display:none;}
+		&:hover{
+			transform: scale(1.1) rotateZ(-10deg) skew(-10deg);
+			transition: transform .25s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+		}
+	}
+	
+	#footer-contact{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		font-size: 90%;
+		li{
+			margin-left: 1rem;
+			margin-bottom: 1rem;
+			position: relative;
+			display: block;
+			opacity: 0;
+			transform: translateX(-1rem);
+			transition: opacity 1s $ease, transform 1s $ease;
+			@for $li from 1 through 30 {
+				&:nth-of-type(#{$li}) {
+					transition-delay:calc(.25s + (#{$li} * .125s));						
+			  }
+			}
+		}
+		a{
+			color: white;
+			opacity: 0.6;
+			text-decoration: none;
+			&:hover{
+				opacity: 1;
+			}
+		}
+	}
+	>div{
+		
+		&:nth-of-type(2){
+					
+		}
+		&:nth-of-type(2){
+		
+		}
+	}	
+}
+.socials{
+	display: flex;
+	font-family: $headings;
+	text-transform: uppercase;
+	font-size: 1.5rem;
+	line-height: 1;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	a{
+		text-decoration: none;		
+	}
+	li{
+		position: relative;
+		display: block;
+		//opacity: 0;
+		//transform: translateY(calc(#{$pad}*1)) rotateZ(10deg);
+		transition: opacity 1s $ease, transform .5s $ease;
+		@for $li from 1 through 30 {
+			&:nth-of-type(#{$li}) {
+				transition-delay:calc((#{$li} * .05s));						
+		  }
+		}
+		&:after{
+			content:',\00a0';
+		}
+		&:last-of-type{
+			&:after{
+				display: none;
+			}
+		}
+	}
+	a{
+		color: white;
+		text-decoration: none;
+		position: relative;
+		display: inline;
+		overflow: hidden;
+		
+		&:after{
+			content: attr(data-title);
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform-origin: 50% 0%;
+			transform:translateX(-50%) translateY(100%) scaleY(0);
+			opacity: 0;
+			//color: black;
+
+			backface-visibility: hidden;
+			transition: transform .5s $ease,  opacity .5s $ease;
+		}
+		&:before{
+			content: attr(data-title);
+			visibility: hidden;
+			display: inline-block;
+		}
+		>span{
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform-origin: 50% 0%;
+			transform:translateX(-50%) translateY(-50%)  scaleY(1);
+			transition: transform .5s $ease,  opacity .5s $ease;
+			
+		}
+	
+	}
+	a:hover{
+		&:after{
+			opacity: 1;
+			transform:translateX(-50%) translateY(-50%)  scaleY(1);
+		}
+		>span{
+			opacity: 0;
+			transform:translateX(-50%) translateY(-100%)  scaleY(0);
+		}
+	}
+}
+.loaded #global-footer.shown{
+	#footer-tagline{
+		opacity: 1;
+		//transform: scale(1);
+		filter:blur(0px);
+	}
+	#footer-contact li{
+		opacity: 1;
+		transform: translateX(0);
+	}
+	#footer-social li{
+		opacity: 1;
+		transform: translateY(0) rotateZ(0);
+	}
+	#footer-logo{
+		opacity: 1;
+		top:0;
+		transform: scaleY(1);
+		&:hover{
+			transform: scale(1.1) rotateZ(-10deg) skew(-10deg);
+			transition: transform .25s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+		}
+	}	
+}
+@include breakpoint(small){
+	#global-icon svg,
+	#global-header #header-logo svg{
+		height: calc(#{$pad}*.75);
+	}
+	#global-footer #footer-logo svg{
+		width:50vw;
+	}
+}
+@include breakpoint(mobile){
+	#global-sidebar,
+	#global-header #primary{
+		display: none;
+	}
+	#global-icon{
+		padding-right: $halfPad;
+		padding-bottom: $halfPad;
+	}
+	#global-header{
+		padding: $halfPad;
+		position: fixed;
+		z-index: 10000;
+		mix-blend-mode: difference;
+	}
+	#global-footer{
+		padding:$pad 0 calc(#{$pad}*2);
+		z-index: 5000;
+	}
+	#global-footer #footer-logo svg{
+		width:100%;
+		max-width: 400px;
+		display: inline-block;
+	}
+	#global-footer #footer-contact{
+		padding: $quarterPad 0;
+		justify-content: center;
+		li{
+			margin: .5rem;
+		}
+	}
+	#global-footer #footer-social{
+		padding-bottom: $pad;	
+		justify-content: center;
+	}
+	#global-footer #footer-tagline{
+		padding-left: $halfPad;
+		padding-right: $halfPad;
+		text-align: center;
+		padding-bottom: $quarterPad;
+		font-size: 90%;
+	}
+	#global-footer>.container{
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0 $halfPad;
+		>div{
+			flex-basis: 100%;
+			text-align: center;
+		}
+	}
+	.loaded #global-header #header-logo,
+	.loaded #global-footer.shown #footer-logo{
+		&:hover{
+			transform: scale(1);
+		}
+	}
+}

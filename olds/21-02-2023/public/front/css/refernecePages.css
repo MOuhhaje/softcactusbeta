@@ -1,0 +1,141 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 20px auto;
+}
+.row.w-90{
+    width: 90%;
+}
+.left,.right{
+    flex: 1;
+    margin: 40px;
+}
+h2.title{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.text{
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: justify;
+}
+.list{
+    font-size: 16px;
+    line-height: 1.5;
+}
+.list ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.list ul li:before{
+    content: "";
+    color: #000;
+    display: inline-block;
+    border-width: 10px;
+    border-left-color: var(--color_2);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+    transform: translate(0px, 4px);
+}
+.color-text{
+    color: var(--text_color);
+}
+.color-2{
+    color: var(--color_2);
+}
+.banner img{
+    width: 100%;
+    /* height: auto; */
+}
+.align-items-center{
+    align-items: center;
+}
+.justify-content-between{
+    justify-content: space-between;
+}
+.next-project{
+    width: 25vw;
+    height: 25vw;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+.next-project img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+.next-project img:hover{
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    filter: brightness(0.5);
+}
+.w-100{
+    width: 100%;
+}
+.slide-container{
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.slide{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap; 
+    /* width:1024px; */
+}
+.slide img{
+    width: 100%;
+}
+/*  responsive  */
+
+@media screen and (max-width: 768px){
+   /* first row */
+    .row:first-child{
+        flex-direction: column;
+    }
+    .left, .right{
+        margin: 15px;
+    }
+    .list ul li:before{
+        transform: translate(0px, 0px);
+        border-width: 6px;
+    }
+
+}
+@media screen and (max-width: 576px){
+    h2.title{
+        font-size: 20px;
+    }
+    .text{
+        font-size: 12px;
+    }
+    .list{
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 1100px){
+    h2.title{
+        font-size: calc(24px + .5vw);
+    }
+    .text{
+        font-size: calc(14px + .5vw);
+    }
+    .list{
+        font-size: calc(16px + .5vw);
+    }
+}

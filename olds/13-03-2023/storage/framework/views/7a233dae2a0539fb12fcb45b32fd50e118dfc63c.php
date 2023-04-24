@@ -1,0 +1,23 @@
+    <!--==================== Our work ====================-->
+
+    <section class="ourwork" id="ourwork">
+        <div class="title1">Our work <span></span></div>
+        
+        <div class="ourwork-content" >
+            <div class="ourwork-left">
+                <p>
+                    What we
+                    <br>
+                    do best
+                </p>  
+            </div>
+            <div class="ourwork-right">
+                <p>
+                    Here goes a small paragraph showing
+                    the client what are the results they may
+                    expect from working with us, in general
+                    basically saying you'll be better
+                </p>
+            </div>
+        </div>
+    </section><?php /**PATH C:\xampp\htdocs\SoftCactus\resources\views/frontOffice/partialPages/ourworkHome.blade.php ENDPATH**/ ?>
