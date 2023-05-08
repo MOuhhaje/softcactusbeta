@@ -6,8 +6,10 @@
 
 @section('content')
 
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
+    {{-- @include('frontOffice.partial.nav')
+    @include('frontOffice.partial.header') --}}
+{{-- @include('frontOffice.partial.newNav', ['color' => 'light']) --}}
+
     <!--==================== sub header ====================-->
 
     <!--==================== career ====================-->

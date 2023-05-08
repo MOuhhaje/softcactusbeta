@@ -66,8 +66,10 @@
 @endsection
 
 @section('content')
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
+    {{-- @include('frontOffice.partial.nav')
+    @include('frontOffice.partial.header') --}}
+{{-- @include('frontOffice.partial.newNav', ['color' => 'light']) --}}
+
 
 
     <section class="content">
@@ -80,10 +82,10 @@
                     <li id="News" class="active">
                         Les nouveautés
                     </li>
-                    <li {{-- id="Protips" --}} id="coming-soon">
+                    <li {{-- id="Protips" --}} >
                         Astuces
                     </li>
-                    <li {{-- id="Ideas"  --}} id="coming-soon">
+                    <li {{-- id="Ideas"  --}} >
                         Les idées
                     </li>
                 </ul>
@@ -426,7 +428,7 @@
 @section('script')
     <script>
         //.toggles 
-        const li = $('.toggles li');
+        const li = $('.toggles liI');
         //on click li add class active
         li.on('click', function () {
             li.removeClass('active');

@@ -4,8 +4,9 @@
 @endsection
 
 @section('content')
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
+    {{-- @include('frontOffice.partial.nav')
+    @include('frontOffice.partial.header') --}}
+{{-- @include('frontOffice.partial.newNav', ['color' => 'light']) --}}
 
     <main class="service-content">
         <div class="sec-header" >

@@ -50,6 +50,12 @@
         /* height: 100%; */
         margin: auto;
     }
+    .section-content.mobile{
+        flex-direction: column;
+    }
+    .section-content.mobile .left{
+        order: 2;
+    }
 
     .second-section .section-content {
         height: 100%;
@@ -73,6 +79,7 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: cover;
+        
     }
 
     .first-section .right {
@@ -187,340 +194,85 @@
     svg{
         overflow: inherit;
     }
-   
-    nav{
-       position: relative;
-       top: 0;
-       left: 0;
-       width: 100%;
-       z-index: 999;
-    }
-    .nav-bar{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        /* padding: 0 20px; */
-        height: 80px;
-        width: 80%;
-        margin: auto;
-    }
-    .nav-bar ul{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .nav-bar ul li{
-        margin: 0 20px;
-    }
-    .nav-bar ul li a{
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 500;
-    }
-    /* .nav-bar ul li a:hover{
-        color: #12033C;
-    }
-    .nav-bar ul li a.active{
-        color: #12033C;
-    } */
-    .logo{
-        width: 200px;
-    }
-    .logo img{
-        width: 100%;
-    }
-    nav ul li a {
-        letter-spacing: 2px;
-        color: #fff;
-        -webkit-transition: color .2s ease;
-        -o-transition: color .2s ease;
-        transition: color .2s ease;
-        padding: 3px 0;
-        margin-bottom: 10px;
-        position: relative;
-        display: inline-block;
-    }
-    .effect.active{
-        color:#12033C
-    }
-    .effect.active:hover{
-        color:#845EC2;
-    }
-    .effect::before {
-        -webkit-transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        -o-transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        background: #845EC2;
-    }
-    .effect:hover::after, .effect:hover::before {
-        width: 100%;
-        left: 0;
-    }
-    .effect.active:before {
-        z-index: 2;
-    }
-    .effect:hover {
-        color: #ffd800;
-    }
-    .effect.active:after {
-        background: #ffd800;
-        width: 100%;
-        left: 0;
-    }
-    .effect::after {
-        -webkit-transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        -o-transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        background: #ffd800;
-    }
-    .effect::after, .effect::before {
-        content: '';
-        position: absolute;
-        top: calc(100% + 5px);
-        width: 0;
-        right: 0;
-        height: 3px;
-    }
-    .hamburger {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-        display: none;
-        cursor: pointer;
-    }
-    .hamburger.show {
-        display: block;
-    }
-    .hamburger .line {
-        width: 30px;
-        height: 3px;
-        background: #fff;
-        margin: 5px 0;
-        transition: all .3s ease-in-out;
-    }
-    .hamburger.bounce{
-        animation: bounceRight 1s ease-in-out infinite;
-    }
 
-    @keyframes bounceRight {
-        0% {
-            transform: translateX(0);
+    @media screen and (max-width: 768px) {
+        .first-section .section-content,
+        .second-section .section-content {
+            flex-direction: column;
         }
-        50% {
-            transform: translateX(10px);
+        .first-section ,.second-section{
+            height:200vh !important;
         }
-        100% {
-            transform: translateX(0);
-        }
-    }
-    .hamburger.active .line:nth-child(1){
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active .line:nth-child(2){
-        opacity: 0;
-    }
-    .hamburger.active .line:nth-child(3){
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* hover */
-    .hamburger:hover .line{
-        background: #845EC2;
-    }
-    .hamburger.active:hover .line{
-        background: #12033C;
-    }
-
-    .nav-bar-expand{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 999;
-        display: none;
-        /* filter the background to blur */
-    }
-    .nav-bar-expand.active{
-        display: block;
-    }
-   
-    .nav-bar-expand .nav{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-    .nav-bar-expand .nav ul{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }   
-    .nav-bar-expand .nav ul li{
-        margin: 20px 0;
-    }
-    .nav-bar-expand .nav ul li a{
-        font-size: 30px;
-        font-weight: 500;
-        color: #FFF;
-        text-decoration: none;
-        text-transform: uppercase;
-        position: relative;
-        transition: color .3s ease;
-
-    }
-    .nav-bar-expand .nav ul li a:hover{
-        color: #12033C;
-    }
-    .nav-bar-expand .nav ul li a.active{
-        color: #12033C;
-    }
-    .nav-bar-expand .nav ul li a.active:hover{
-        color: #FFF;
-    }
-    .nav-bar-expand .nav ul li a::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        background: #12033C;
-        z-index: -1;
-        -webkit-transition: width .3s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        -o-transition: width .3s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        transition: width .3s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-    }
-    .nav-bar-expand .nav ul li a::after{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        background: #ffd800;
-        z-index: -1;
-        -webkit-transition: width .25s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        -o-transition: width .25s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        transition: width .25s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-    }
-    .nav-bar-expand .nav ul li a.active::before{
-        width: 100%;
-    }
-    .nav-bar-expand .nav ul li a.active::after{
-        width: 100%;
-    }
-    .nav-bar-expand .nav ul li a.effect::before{
-        content: '';
-        position: absolute;
-        top: calc(100% + 5px);
-        width: 0;
-        right: 0;
-        height: 3px;
-        background: #12033C;
-        -webkit-transition: width .3s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        -o-transition: width .3s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-        transition: width .3s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-    }
-    .nav-bar-expand .nav ul li a.effect::after{
-        content: '';
-        position: absolute;
-        top: calc(100% + 5px);
-        width: 0;
-        left: 0;
-        height: 3px;
-        background: #ffd800;
-        -webkit-transition: width .25s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        -o-transition: width .25s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-        transition: width .25s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-    }
-    .nav-bar-expand .nav ul li a.effect:hover::before{
-        width: 100%;
-    }
-    .nav-bar-expand .nav ul li a.effect:hover::after{
-        width: 100%;
-    }
-    .nav-bar-expand .nav ul li a.effect.active::before{
-        width: 100%;
-    }
-    .nav-bar-expand .nav ul li a.effect.active::after{
-        width: 100%;
-    }
-    .nav-bar-expand .nav ul li a.effect.active:hover::before{
-        width: 0;
-    }
-    .nav-bar-expand .nav ul li a.effect.active:hover::after{
-        width: 0;
-    }
-    .nav-bar-expand .nav ul li a.effect.active:hover{
-        color: #FFF;
-    }
-    .nav-bar-expand{
-        background-image: url("{{ asset('imgs/bgHero.png') }}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        width: 100%;
-    }
-    @media (max-width: 600px){
-        .first-section svg{
-            width: auto !important;
+        .first-section  svg{
+            width: 80% !important;
             height: auto !important;
         }
-        .first-section .section-content{
-           flex-direction: column;
+        .first-section .left,
+        .second-section .left ,
+        .first-section .right,
+        .second-section .right {
+            height: 80vh;
         }
-        .first-section>div>div{
+        .first-section .left,
+        .second-section .left {
+            width: 100%;
+            justify-content: center;
+        }
+        .first-section .right{
+            justify-content:flex-end;
+            margin-top: 110px;
+        }
+        .first-section .right,
+        .second-section .right {
             width: 100%;
         }
+        .second-section .right {
+            height: 100%;
+        }
+        .second-section .left {
+            height: 100%;
+        }
+        .second-section .left img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            object-position: right;
+        }
+        .second-section .right {
+            justify-content: center;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .YouAerNotAlone {
+            height: 50%;
+        }
+        .hand{
+            position: absolute;
+            height: 190px;
+            top: 0;
+            right: 0;
+        }
+        svg{
+            overflow: inherit;
+        }
     }
+    .hero::after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        bottom: 0;
+        /*  background: from transparent to #fff; */
+        background: linear-gradient(to bottom, transparent, #fff);
+        z-index: 1;
+    }
+   
+
 </style>
 
 <div class="hero">
-    <nav >
-        <div class="nav-bar active">
-            <div class="logo">
-                <img src="{{ asset('imgs/full-logo-purple.png') }}" alt="">
-            </div>
-            <div class="nav">
-                <ul>
-                    <li><a href="#home" class="effect active">Home</a></li>
-                    <li><a href="#about" class="effect">About</a></li>
-                    <li><a href="#services" class="effect">Services</a></li>
-                    <li><a href="#blog" class="effect">Blog</a></li>
-                    <li><a href="#contact" class="effect">Contact</a></li>
-
-                </ul>
-            </div>
-        </div>
-        <div class="hamburger bounce ">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-        <div class="nav-bar-expand ">
-            <div class="nav">
-                <ul>
-                    <li><a href="#home" class="effect active">Home</a></li>
-                    <li><a href="#about" class="effect">About</a></li>
-                    <li><a href="#services" class="effect">Services</a></li>
-                    <li><a href="#blog" class="effect">Blog</a></li>
-                    <li><a href="#contact" class="effect">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
+    @include('frontOffice.partial.newNav', ['color' => 'dark'])   
     <section class="first-section">
         <div class="section-content">
             <div class="left">
@@ -1278,17 +1030,17 @@
     $(document).ready(function() {
         const targets = gsap.utils.toArray('.hero section');
 
-        ScrollTrigger.create({
-            start: 0,
-            end: 'max',
-            snap: {
-                snapTo: 1 / (targets.length - 1),
-                duration: 2,
-                ease: 'sine',
-                delay: 0.7,
-                directional: false
-            },
-        });
+        // ScrollTrigger.create({
+        //     start: 0,
+        //     end: 'max',
+        //     snap: {
+        //         snapTo: 1 / (targets.length - 1),
+        //         duration: 2,
+        //         ease: 'sine',
+        //         delay: 0.7,
+        //         directional: false
+        //     },
+        // });
 
         var texts = $('#CONSEILER, #DIGITAL, #MARKETING_, #EN, #VENDER_, #DE_, #FACON, #LA_NOUVELLE_, #EST_');
         texts.each(function() {
@@ -1466,100 +1218,178 @@
 
         var youAreNotAlone = $('#YouAerNotAlone');
         const YouAerNotAlonePaths = $('#YouAerNotAlone path');
-        YouAerNotAlonePaths.each(function(i, path) {
-            var x = path.getTotalLength();
-            var fillcolor = path.attributes.fill.value;
-            path.style.stroke=fillcolor;
-            path.style.strokeWidth=4;
-            path.style.strokeDasharray=x;
-            path.style.transition="fill 1s ease-in-out";
-            
-            gsap.fromTo(path, {
-                strokeDashoffset: x,
-                fill: 'none',
-            }, {
-                scrollTrigger: {
-                    trigger: "#YouAerNotAlone",
-                    scrub: 2,
-                    // markers: true,
-                    toggleActions: "restart pause reverse pause",
-                    start: "top center",
-                    end: "+=50 center",
-                },
-                strokeDashoffset: 0,
-                fill: fillcolor,
-                ease: "none",
-                duration: 3,
-            }).delay(i*0.1);
-            //fill from none 
-            // gsap.fromTo(path, {
-            //     fill: 'none',
-            // }, {
-            //     scrollTrigger: {
-            //         trigger: "#YouAerNotAlone",
-            //         scrub: 4,
-            //         // markers: true,
-            //         toggleActions: "restart pause reverse pause",
-            //         start: "top center",
-            //         end: "+=50 center",
-            //     },
-            //     fill: fillcolor,
-            //     ease: "none",
-            //     duration: 3,
-            // });
-           
-        });
-
-        //const .hand
         const hand = $('.hand');
-
-        //from opacity 0 to 1
-        //from y 0 to 100
-        gsap.fromTo(hand, {
-            opacity: 0,
-            y: -100,
-            x: +100,
-        }, {
-            scrollTrigger: {
-                trigger: "#YouAerNotAlone",
-                scrub: 4,
-                // markers: true,
-                toggleActions: "restart pause reverse pause",
-                start: "top center",
-                end: "+=50 center",
-            },
-            opacity: 1,
-            y: 0,
-            x: 0,
-            ease: "none",
-            duration: 3,
-        });
-
-        // const #img
         const img = $('#img');
-        //from opacity 0 to 1
-        //from y 0 to 100
+        //when resize change width
+        let screenWidth = window.innerWidth;
+        $(window).resize(function() {
+            screenWidth = window.innerWidth;
+            console.log(screenWidth);
+            responsive();
+        });
+        let responsive = () => {
+            if (screenWidth>768){
+                console.log('desktop');
+                YouAerNotAlonePaths.each(function(i, path) {
+                    var x = path.getTotalLength();
+                    var fillcolor = path.attributes.fill.value;
+                    path.style.stroke=fillcolor;
+                    path.style.strokeWidth=4;
+                    path.style.strokeDasharray=x;
+                    path.style.transition="fill 1s ease-in-out";
+                    
+                    gsap.fromTo(path, {
+                        strokeDashoffset: x,
+                        fill: 'none',
+                    }, {
+                        scrollTrigger: {
+                            trigger: "#YouAerNotAlone",
+                            scrub: 2,
+                            // markers: true,
+                            toggleActions: "restart pause reverse pause",
+                            start: "top center",
+                            end: "+=50 center",
+                        },
+                        strokeDashoffset: 0,
+                        fill: fillcolor,
+                        ease: "none",
+                        duration: 3,
+                    }).delay(i*0.1);
+                   
+                });
+                
+                gsap.fromTo(hand, {
+                    opacity: 0,
+                    y: -100,
+                    x: +100,
+                }, {
+                    scrollTrigger: {
+                        trigger: "#YouAerNotAlone",
+                        scrub: 4,
+                        // markers: true,
+                        toggleActions: "restart pause reverse pause",
+                        start: "top center",
+                        end: "+=50 center",
+                    },
+                    opacity: 1,
+                    y: 0,
+                    x: 0,
+                    ease: "none",
+                    duration: 3,
+                });
+                
+                gsap.fromTo(img, {
+                    opacity: 0,
+                    y: -100,
+                    x: -500,
+                }, {
+                    scrollTrigger: {
+                        trigger: "#YouAerNotAlone",
+                        scrub: 4,
+                        // markers: true,
+                        toggleActions: "restart pause reverse pause",
+                        start: "top center",
+                        end: "+=50 center",
+                    },
+                    opacity: 1,
+                    y: 0,
+                    x: 0,
+                    ease: "none",
+                    duration: 3,
+                });  
+            }else{
+                console.log('mobile');
+                gsap.fromTo(hand, {
+                            opacity: 0,
+                            y: -100,
+                            x: +100,
+                        }, {
+                            scrollTrigger: {
+                                trigger: ".grp-2",
+                                scrub: 4,
+                                // markers: true,
+                                toggleActions: "restart pause reverse pause",
+                                start: "bottom center",
+                                end: "+=500 center",
+                            },
+                            opacity: 1,
+                            y: 0,
+                            x: 0,
+                            ease: "none",
+                            duration: 3,
+                        });
+                        gsap.fromTo(img, {
+                            opacity: 0,
+                            y: -100,
+                            x: -500,
+                        }, {
+                            scrollTrigger: {
+                                trigger: ".grp-2",
+                                scrub: 4,
+                                // markers: true,
+                                toggleActions: "restart pause reverse pause",
+                                start: "bottom center",
+                                end: "+=500 center",
+                            },
+                            opacity: 1,
+                            y: 0,
+                            x: 0,
+                            ease: "none",
+                            duration: 3,
+                        });  
+                        YouAerNotAlonePaths.each(function(i, path) {
+                            var x = path.getTotalLength();
+                            var fillcolor = path.attributes.fill.value;
+                            path.style.stroke=fillcolor;
+                            path.style.strokeWidth=4;
+                            path.style.strokeDasharray=x;
+                            path.style.transition="fill 1s ease-in-out";
+                            
+                            gsap.fromTo(path, {
+                                strokeDashoffset: x,
+                                fill: 'none',
+                            }, {
+                                scrollTrigger: {
+                                    trigger: "#YouAerNotAlone",
+                                    scrub: 2,
+                                    // markers: true,
+                                    toggleActions: "restart pause reverse pause",
+                                    start: "top center",
+                                    end: "+=100 center",
+                                },
+                                strokeDashoffset: 0,
+                                fill: fillcolor,
+                                ease: "none",
+                                duration: 3,
+                            }).delay(i*0.1);
+                        
+                        });
+            }
+        }
+        responsive();
+        
+       
 
-        gsap.fromTo(img, {
-            opacity: 0,
-            y: -100,
-            x: -500,
-        }, {
-            scrollTrigger: {
-                trigger: "#YouAerNotAlone",
-                scrub: 4,
-                // markers: true,
-                toggleActions: "restart pause reverse pause",
-                start: "top center",
-                end: "+=50 center",
-            },
-            opacity: 1,
-            y: 0,
-            x: 0,
-            ease: "none",
-            duration: 3,
-        });   
-    })
+       
+            // let mm = ScrollTrigger.matchMedia();
+
+            // mm.add({
+            //     isTablet:"(max-width: 768px)",
+            //     isDesktop:"(min-width: 769px)" 
+            // },(context)=>{
+            //     if(context.isTablet){
+            //         console.log("isTablet");
+                   
+            //     }
+            //     if(context.isDesktop){
+                   
+            //     }
+            // });
+            // mm.revert();
+
+           
+      
+    });
 
 
 

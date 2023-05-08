@@ -1,6 +1,6 @@
     <!--==================== team ====================-->
 
-    <div class="team">
+    <div class="team">  
         <div class="title-team">Notre team <span>.</span></div>
 
         <div class="team-members">

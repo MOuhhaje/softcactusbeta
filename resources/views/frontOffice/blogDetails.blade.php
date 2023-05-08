@@ -157,9 +157,10 @@
 @endsection
 
 @section('content')
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
+    {{-- @include('frontOffice.partial.nav')
+    @include('frontOffice.partial.header') --}}
 
+{{-- @include('frontOffice.partial.newNav', ['color' => 'light']) --}}
 
     <section class="content-article bg-img">
         <article>
@@ -169,7 +170,7 @@
             <div class="title">
                 L’intelligence artificielle
             </div>
-            <div class="shares">
+            {{-- <div class="shares">
                 <div class="share">
                     <i class="fab fa-facebook-f"></i>
                 </div>
@@ -182,7 +183,7 @@
                 <div class="share">
                     <i class="fab fa-instagram"></i>
                 </div>
-            </div>
+            </div> --}}
             <div class="date">
                 Publier le 
                 <span class="kbg-color-5">15/04/2023</span>

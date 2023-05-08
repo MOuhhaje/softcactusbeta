@@ -1,8 +1,15 @@
 @extends('frontOffice.layouts.layout')
+    @section('nav')
+        <nav-included-in-hero></nav-included-in-hero>
+    @endsection
 @section('css')
     <link href="{{ asset('front/css/_canvas.scss') }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('front/css/scroll.css') }}">
     <style>
+        tspan{
+            font-family: 'Bebas Neue', cursive;
+        }
+
         .slider-container .slider .wrapper .text .text-canva{
             font-size: 2.5rem;
             font-weight: 700;
@@ -40,11 +47,10 @@
 @endsection
 
 @section('content')
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
-
+    {{-- @include('frontOffice.partial.header') --}}
+    @include('frontOffice.partialPages.hero')
     {{-- <main> --}}
-        <div class="slider-container" >
+        {{-- <div class="slider-container" >
             <div class="slider">
                 <img src="{{ asset('imgs/acceuil.jpg') }}" alt="" class="img-desk">
             </div>
@@ -64,18 +70,19 @@
                 </div>
             </div>
         </div>
-        <img src="{{ asset('imgs/phone1.png') }}" alt="" class="img-mobile">
+        <img src="{{ asset('imgs/phone1.png') }}" alt="" class="img-mobile"> --}}
     {{-- </main> --}}
 
     @include('frontOffice.partialPages.ourworkHome')
     @include('frontOffice.partialPages.serviceHome')
+    {{-- @include('frontOffice.partialPages.teamHome') --}}
+    {{-- @include('frontOffice.partialPages.NewteamHome') --}}
     @include('frontOffice.partialPages.chandelleHome')
-    @include('frontOffice.partialPages.teamHome')
 
 @endsection
 @section('script')
     {{-- gsap  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     {{-- stackblur --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stackblur-canvas/2.5.0/stackblur.min.js" integrity="sha512-W5pl1mdnRnOONc8pHMFi5xyBNNNHo6N7Q2psPRHWMPR47VyO6F/sL1G5PpRLBcsd9QL+WfDa0J9mEsGoxQH+RQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- canvas --}}

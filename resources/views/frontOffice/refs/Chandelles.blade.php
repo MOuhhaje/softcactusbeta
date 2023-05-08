@@ -44,8 +44,8 @@
 @endsection
 
 @section('content')
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
+    {{-- @include('frontOffice.partial.nav')
+    @include('frontOffice.partial.header') --}}
   
 
     <main class="container">

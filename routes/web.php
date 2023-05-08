@@ -24,9 +24,16 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 Route::get('/hero', function () {
     return view('frontOffice.partialPages.hero');
 });
+Route::get('/values', function () {
+    return view('frontOffice.partialPages.nosValeurs');
+});
 
+
+// Route::get('/', function () {
+//     return view('coming');
+// })->name('comingsoon');
 Route::get('/', function () {
-    return view('coming');
+    return view('comingsoon');
 })->name('comingsoon');
 
 Route::group(['prefix' => '/v2.0'/*,'middleware'=>['auth'] */],function(){

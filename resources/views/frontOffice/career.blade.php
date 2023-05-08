@@ -6,8 +6,10 @@
 
 @section('content')
 
-    @include('frontOffice.partial.nav')
-    @include('frontOffice.partial.header')
+    {{-- @include('frontOffice.partial.nav')
+    @include('frontOffice.partial.header') --}}
+{{-- @include('frontOffice.partial.newNav', ['color' => 'light']) --}}
+
     <section class="sub-header">
         <ul class="sub__head">
             <li class="sub__item">
